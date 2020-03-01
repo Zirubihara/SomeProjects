@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <form class="form-group mr-auto" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4 mt-3 left">
+                    {{ form.eventName|as_crispy_field }}
+                </div>
+                <div class="col-md-4 mt-3 left">
+                    {{ form.eventDate|as_crispy_field }}
+                </div>
+                {% block sidebar %}
+                    {% include 'sidebar.html' %}
+                {% endblock sidebar %}
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-3 left">
+                    {{ form.cenaBiletu|as_crispy_field }}
+                </div>
+                <div class="col-md-4 mt-3 left">
+                    {{ form.location|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mt-3 left">
+                    {{ form.iloscMiejsc|as_crispy_field }}
+                </div>
+                <div class="col-md-4 mt-3 left">
+                    {{ form.pubDate|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-3 left ">
+                    {{ form.tresc|as_crispy_field }}
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">Dodaj wydarzenie</button>
+        </form>
+    </div>
+{% endblock %}

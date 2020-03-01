@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if not request.user.is_authenticated %}
+        <div class="container">
+        <form class="form-group mr-auto" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4 mt-3 left">
+                    {{ form.login|as_crispy_field }}
+                </div>
+                <div class="col-md-4 mt-3 left">
+                    {{ form.password|as_crispy_field }}
+                </div>
+                {% block sidebar %}
+                    {% include 'sidebar.html' %}
+                {% endblock sidebar %}
+            </div>
+
+            <button type="submit" class="btn btn-success">Save person</button>
+        </form>
+    {% else %}
+        <div class=" mr-auto">
+            Czesc {{ user.get_username }}
+        </div>
+        <a class="btn btn-outline-success" href="{% url 'logout' %}" role="button">Logout</a>
+
+    {% endif %}
+
+</div>
+{% endblock %}
