@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to my Blonde Hair Traveler</h3>
+                    <p class="text-light">If you like traveling, exploring new places, want to learn something
+                        interesting or just want to find out which places you should visit...
+                        You have come to the right place!&nbsp
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-12 mt-3">
+            {% for post in latest_post_list %}
+            <div class="card mb-5">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.country }} | {{ post.city}} </p>
+                    <p class="card-text">{{post.text|slice:":200" }}</p>
+                    <a href="{% url 'detail' post.slug  %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}
